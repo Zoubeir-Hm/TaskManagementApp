@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/tasks"
+        android:icon="@drawable/baseline_task_24"
+        android:title="Tasks"/>
+
+    <item
+        android:id="@+id/planning1"
+        android:icon="@drawable/baseline_notes_24"
+        android:title="Notes"/>
+
+    <item
+        android:id="@+id/placeholder"
+        android:title=""/>
+
+
+
+
+
+    <item
+        android:id="@+id/planning3"
+        android:icon="@drawable/baseline_event_24"
+        android:title="Events"/>
+
+    <item
+        android:id="@+id/planning2"
+        android:icon="@drawable/baseline_person_24"
+        android:title="Profile"/>
+
+</menu>
