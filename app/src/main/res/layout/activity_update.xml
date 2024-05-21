@@ -28,18 +28,18 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Task"
+                android:text="Update Task"
                 android:textSize="30sp"
                 android:textAlignment="center"
                 android:textColor="@color/dark_blue"/>
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/uploadimg"
                 android:id="@+id/updateImage"
+                android:layout_width="match_parent"
+                android:layout_height="243dp"
                 android:layout_marginTop="10dp"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/ajout_image" />
 
             <EditText
                 android:layout_width="match_parent"

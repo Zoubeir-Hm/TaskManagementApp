@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,6 +16,7 @@ import com.example.taskmanagementapp.R;
 import com.example.taskmanagementapp.adapters.NoteAdapter;
 import com.example.taskmanagementapp.note;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,6 +31,8 @@ public class NotesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private NoteAdapter notesAdapter;
     private List<note> noteList;
+
+    FloatingActionButton fab;
     private BottomNavigationView bottomMenu;
 
     @Override
@@ -45,6 +50,7 @@ public class NotesActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         recyclerView = findViewById(R.id.recyclerViewNotes);
         bottomMenu = findViewById(R.id.bottomMenu);
+        fab = findViewById(R.id.fab);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         noteList = new ArrayList<>();
@@ -74,6 +80,13 @@ public class NotesActivity extends AppCompatActivity {
 
 
         loadNotes();
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NotesActivity.this, AddNoteActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadNotes() {
