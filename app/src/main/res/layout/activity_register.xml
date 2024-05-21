@@ -30,6 +30,39 @@
         app:layout_constraintTop_toBottomOf="@id/textViewLogin"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp" />
+    <EditText
+        android:id="@+id/nom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Last name"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextEmail"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp" />
+    <EditText
+        android:id="@+id/prenom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="First name"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nom"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp" />
+    <EditText
+        android:id="@+id/tel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Phone number"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/prenom"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -37,7 +70,7 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/editTextEmail"
+        app:layout_constraintTop_toBottomOf="@id/tel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"

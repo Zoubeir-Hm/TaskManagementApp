@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.MenuItem;
 
 import com.example.taskmanagementapp.DataClass;
 import com.example.taskmanagementapp.UploadActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<DataClass> dataList;
     MyAdapter adapter;
+    BottomNavigationView bottomMenu;
     SearchView searchView;
 
     @Override
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         searchView = findViewById(R.id.search);
         searchView.clearFocus();
-
+        bottomMenu = findViewById(R.id.bottomNavigationView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 1);
         recyclerView.setLayoutManager(gridLayoutManager);
 
@@ -50,6 +53,27 @@ public class MainActivity extends AppCompatActivity {
         builder.setView(R.layout.progress_layout);
         AlertDialog dialog = builder.create();
         dialog.show();
+
+        bottomMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int item_id = item.getItemId();
+                if (item_id == R.id.tasks){
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                } else if (item_id == R.id.notes){
+                    startActivity(new Intent(getApplicationContext(),NotesActivity.class));
+                    return true;
+                } else if (item_id == R.id.event){
+                    startActivity(new Intent(getApplicationContext(),NotesActivity.class));
+                    return true;
+                } else {
+                    startActivity(new Intent(getApplicationContext(),NotesActivity.class));
+                    return true;
+                }
+
+                return false;
+            }
+        });
 
         dataList = new ArrayList<>();
 
@@ -110,4 +134,6 @@ public class MainActivity extends AppCompatActivity {
         }
         adapter.searchDataList(searchList);
     }
+    //------------------------------------------------------------------------
+
 }
