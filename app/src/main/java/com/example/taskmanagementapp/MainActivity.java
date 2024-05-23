@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),NotesActivity.class));
                     return true;
                 } else if (item_id == R.id.event){
-                    startActivity(new Intent(getApplicationContext(),AddEventActivity.class));
+                    startActivity(new Intent(getApplicationContext(),EventActivity.class));
                     return true;
                 } else {
                     startActivity(new Intent(getApplicationContext(),NotesActivity.class));

@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -17,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskManagementApp"
         tools:targetApi="31">
+        <activity
+            android:name=".EventActivity"
+            android:exported="false" />
+
         <receiver android:name=".AlarmReceiver" />
 
         <activity
