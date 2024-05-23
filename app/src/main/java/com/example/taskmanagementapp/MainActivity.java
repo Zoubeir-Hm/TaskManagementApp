@@ -7,7 +7,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.MenuItem;
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),NotesActivity.class));
                     return true;
                 } else if (item_id == R.id.event){
-                    startActivity(new Intent(getApplicationContext(),NotesActivity.class));
+                    startActivity(new Intent(getApplicationContext(),AddEventActivity.class));
                     return true;
                 } else {
                     startActivity(new Intent(getApplicationContext(),NotesActivity.class));
@@ -124,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        createNotificationChannel();
+
     }
     public void searchList(String text){
         ArrayList<DataClass> searchList = new ArrayList<>();
@@ -133,6 +138,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         adapter.searchDataList(searchList);
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Event Channel";
+            String description = "Channel for Event Reminders";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("event_channel", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
     //------------------------------------------------------------------------
 
