@@ -29,7 +29,7 @@ public class register extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
     private EditText editTextEmail, editTextPassword, editTextConfirmPassword, nom, prenom, tel;
-    private Button buttonRegister;
+    private Button buttonRegister, loginButton;
 
 
     public void onStart() {
