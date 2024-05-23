@@ -1,4 +1,5 @@
-package com.example.taskmanagementapp;// NotesActivity.java
+// NotesActivity.java
+package com.example.taskmanagementapp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,16 +13,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.taskmanagementapp.R;
 import com.example.taskmanagementapp.adapters.NoteAdapter;
-import com.example.taskmanagementapp.note;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,52 +53,43 @@ public class NotesActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         noteList = new ArrayList<>();
-        notesAdapter = new NoteAdapter(noteList);
+        notesAdapter = new NoteAdapter(noteList, this);
         recyclerView.setAdapter(notesAdapter);
 
-        bottomMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int item_id = item.getItemId();
-                if (item_id == R.id.notes){
-                    startActivity(new Intent(getApplicationContext(), NotesActivity.class));
-                    return true;
-                } else if (item_id == R.id.tasks){
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    return true;
-                } else if (item_id == R.id.event){
-                    startActivity(new Intent(getApplicationContext(), NotesActivity.class));
-                    return true;
-                } else {
-                    startActivity(new Intent(getApplicationContext(), NotesActivity.class));
-                    return true;
-                }
+        bottomMenu.setOnNavigationItemSelectedListener(item -> {
+            int item_id = item.getItemId();
+            if (item_id == R.id.notes) {
+                startActivity(new Intent(getApplicationContext(), NotesActivity.class));
+                return true;
+            } else if (item_id == R.id.tasks) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                return true;
+            } else if (item_id == R.id.event) {
+                startActivity(new Intent(getApplicationContext(), NotesActivity.class));
+                return true;
+            } else {
+                startActivity(new Intent(getApplicationContext(), NotesActivity.class));
+                return true;
             }
         });
 
-
-
         loadNotes();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NotesActivity.this, AddNoteActivity.class);
-                startActivity(intent);
-            }
+        fab.setOnClickListener(view -> {
+            Intent intent = new Intent(NotesActivity.this, AddNoteActivity.class);
+            startActivity(intent);
         });
     }
 
     private void loadNotes() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            String userId = user.getUid();
-
             db.collection("user").document(user.getEmail()).collection("notes")
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 note Note = document.toObject(note.class);
+                                Note.setId(document.getId());
                                 noteList.add(Note);
                             }
                             notesAdapter.notifyDataSetChanged();

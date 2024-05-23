@@ -2,6 +2,7 @@
 package com.example.taskmanagementapp;
 
 public class note {
+    private String id;
     private String title;
     private String description;
 
@@ -12,7 +13,14 @@ public class note {
     public note(String title, String description) {
         this.title = title;
         this.description = description;
+    }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
