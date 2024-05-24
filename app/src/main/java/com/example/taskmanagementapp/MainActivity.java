@@ -54,10 +54,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        bottomMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        AlertDialog dialog = builder.create();bottomMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int item_id = item.getItemId();
@@ -77,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        dialog.show();
+
+
 
         dataList = new ArrayList<>();
 

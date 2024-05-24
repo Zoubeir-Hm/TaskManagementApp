@@ -29,7 +29,7 @@ public class EventActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private EventAdapter eventAdapter;
     private FirebaseFirestore db;
-    private String userEmail = "user@example.com"; // Remplacez par l'email de l'utilisateur actuel
+    private String userEmail = "user@example.com"; // Replace with the current user's email
 
     FloatingActionButton fab;
     private BottomNavigationView bottomMenu;
@@ -38,7 +38,6 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,21 +50,35 @@ public class EventActivity extends AppCompatActivity {
         eventAdapter = new EventAdapter(new ArrayList<>());
         recyclerView.setAdapter(eventAdapter);
 
-        db = FirebaseFirestore.getInstance();
+        bottomMenu = findViewById(R.id.bottomMenu); // Initialize bottomMenu before using it
+        bottomMenu.setOnNavigationItemSelectedListener(item -> {
+            int item_id = item.getItemId();
+            if (item_id == R.id.notes) {
+                startActivity(new Intent(getApplicationContext(), NotesActivity.class));
+                return true;
+            } else if (item_id == R.id.tasks) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                return true;
+            } else if (item_id == R.id.event) {
+                startActivity(new Intent(getApplicationContext(), EventActivity.class));
+                return true;
+            } else {
+                startActivity(new Intent(getApplicationContext(), NotesActivity.class));
+                return true;
+            }
+        });
 
-        bottomMenu = findViewById(R.id.bottomMenu);
         fab = findViewById(R.id.fab);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            String userEmail = currentUser.getEmail();
+            userEmail = currentUser.getEmail();
             loadEvents(userEmail);
         } else {
-            // Rediriger l'utilisateur vers l'écran de connexion
+            // Redirect the user to the login screen
         }
 
-        loadEvents(userEmail);
         fab.setOnClickListener(view -> {
             Intent intent = new Intent(EventActivity.this, AddEventActivity.class);
             startActivity(intent);
@@ -93,5 +106,4 @@ public class EventActivity extends AppCompatActivity {
             }
         });
     }
-
 }

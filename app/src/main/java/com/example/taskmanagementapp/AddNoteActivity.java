@@ -1,5 +1,6 @@
 package com.example.taskmanagementapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -74,6 +75,11 @@ public class AddNoteActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             Toast.makeText(AddNoteActivity.this, "Note added successfully", Toast.LENGTH_SHORT).show();
+
+                            // Rediriger vers NotesActivity après succès
+                            Intent intent = new Intent(AddNoteActivity.this, NotesActivity.class);
+                            startActivity(intent);
+                            finish(); // Terminer cette activité pour que l'utilisateur ne puisse pas revenir en arrière
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

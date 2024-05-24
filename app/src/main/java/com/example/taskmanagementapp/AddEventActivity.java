@@ -109,6 +109,9 @@ public class AddEventActivity extends AppCompatActivity {
                     .addOnSuccessListener(documentReference -> {
                         Toast.makeText(AddEventActivity.this, "Event added successfully", Toast.LENGTH_SHORT).show();
                         setAlarm(eventName, year, month, day, hour, minute);
+                        Intent intent = new Intent(AddEventActivity.this, EventActivity.class);
+                        startActivity(intent);
+                        finish();
                     })
                     .addOnFailureListener(e -> {
                         Toast.makeText(AddEventActivity.this, "Error adding event: " + e.getMessage(), Toast.LENGTH_SHORT).show();

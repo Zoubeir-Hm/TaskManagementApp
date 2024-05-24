@@ -5,12 +5,16 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTextEventName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/editTextEventName"
+        android:background="@drawable/lavender_border"
+        android:layout_marginTop="20dp"
+        android:padding="16dp"
         android:hint="Event Name"
-        android:layout_marginBottom="16dp"
-        android:inputType="text" />
+        android:gravity="start|center_vertical"
+        android:textColor="@color/dark_blue"/>
+
 
     <Button
         android:id="@+id/buttonSelectDate"
@@ -18,7 +22,8 @@
         android:layout_height="wrap_content"
         android:text="Select Date"
         android:layout_below="@id/editTextEventName"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="20dp"/>
 
     <Button
         android:id="@+id/buttonSelectTime"

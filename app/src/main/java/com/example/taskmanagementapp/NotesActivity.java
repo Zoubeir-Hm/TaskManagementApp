@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -56,6 +57,10 @@ public class NotesActivity extends AppCompatActivity {
         notesAdapter = new NoteAdapter(noteList, this);
         recyclerView.setAdapter(notesAdapter);
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(NotesActivity.this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+
         bottomMenu.setOnNavigationItemSelectedListener(item -> {
             int item_id = item.getItemId();
             if (item_id == R.id.notes) {
@@ -99,7 +104,7 @@ public class NotesActivity extends AppCompatActivity {
                     });
         }
     }
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -107,5 +112,5 @@ public class NotesActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }
