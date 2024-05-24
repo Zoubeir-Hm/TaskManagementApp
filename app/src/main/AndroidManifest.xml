@@ -17,6 +17,9 @@
         android:theme="@style/Theme.TaskManagementApp"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".EventActivity"
             android:exported="false" />
 

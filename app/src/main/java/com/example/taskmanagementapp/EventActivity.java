@@ -63,7 +63,7 @@ public class EventActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), EventActivity.class));
                 return true;
             } else {
-                startActivity(new Intent(getApplicationContext(), NotesActivity.class));
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 return true;
             }
         });
